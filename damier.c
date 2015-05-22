@@ -1,6 +1,6 @@
 #include "damier.h"
 
-int damier(SDL_Window *window, SDL_Renderer *renderer)
+int create_damier(SDL_Window *window, SDL_Renderer *renderer)
 {	
 	SDL_Rect *rectangles;
 

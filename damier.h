@@ -3,4 +3,4 @@
 
 #include <SDL2/SDL.h>
 
-int damier();
+int create_damier();

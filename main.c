@@ -15,7 +15,7 @@ int main()
 
     SDL_Renderer *renderer = create_window(window);
 
-    damier(window, renderer);
+    create_damier(window, renderer);
 
     while( !quit ) {
     	//Handle events on queue
