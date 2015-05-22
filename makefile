@@ -16,7 +16,7 @@ compile_mac:
 	$(CC) $(FRAMEWORKS) $(SOURCE) $(LIBS) $(FLAGS) -o $(EXEC)
 
 compile_linux:
-	$(CC) $(FRAMEWORKS_LINUX) $(SOURCE) $(LIBS) $(FLAGS) -o $(EXEC)
+	$(CC) $(SOURCE) $(FRAMEWORKS_LINUX) $(LIBS) $(FLAGS) -o $(EXEC)
 
 compile:
 	$(CC) $(FRAMEWORKS) $(SOURCE) $(LIBS) $(FLAGS) -o $(EXEC)
