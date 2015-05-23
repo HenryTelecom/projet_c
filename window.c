@@ -1,16 +1,16 @@
 #include "window.h"
 
-SDL_Renderer *create_window(SDL_Window* window)
+SDL_Renderer *create_window(SDL_Window* window, int height)
 {
     SDL_Renderer* renderer = NULL;
 
     
     window = SDL_CreateWindow
     (
-        "Jeu de la vie", SDL_WINDOWPOS_UNDEFINED,
+        "Jeu de dames", SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        1000,
-        1000,
+        height,
+        height,
         SDL_WINDOW_SHOWN
     );
 
