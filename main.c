@@ -4,41 +4,34 @@
 
 #include "window.h"
 #include "damier.h"
-<<<<<<< HEAD
 #include "pion.h"
-=======
 
 int getscreenheight();
->>>>>>> 7f730f829637f2267de1c91cbd80e95cba29d38d
 
 int main()
 {
 	int quit = 0;
     SDL_Event e;
-
+    pion *p;
 
     SDL_Window *window = NULL;
-
+    SDL_Renderer *renderer;
     int window_h = getscreenheight();
 
-    SDL_Renderer *renderer = create_window(window, window_h);
-
-    damier(window, renderer, window_h/10 - 3);
 
 
-<<<<<<< HEAD
-    pion p;
+    
+    window_h = window_h - ((window_h%100) + window_h/10);
 
-    p.x = 1;
-    p.y = 0;
-    p.color = 1;
+    renderer = create_window(window, window_h);
 
-    damier(window, renderer);
-    Drawpion(window, renderer, &p);
+    damier(window, renderer, window_h/10);
 
-=======
-    create_damier(window, renderer);
->>>>>>> 7f730f829637f2267de1c91cbd80e95cba29d38d
+    p = create_pion(1,0,0);
+    draw_pion(renderer, &p[0]);
+    move_pion(renderer,p,3,0,window_h/10);
+
+    /*init_game(renderer);*/
 
     while( !quit ) {
     	/*Handle events on queue*/

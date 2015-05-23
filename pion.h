@@ -12,4 +12,7 @@ struct pion {
 } typedef pion;
 
 
-int Drawpion(SDL_Window *window, SDL_Renderer *renderer, pion *p);
+int draw_pion(SDL_Renderer *renderer, pion *p);
+pion *create_pion(int x, int y, int color);
+void *move_pion(SDL_Renderer *renderer, pion *p, int nx, int ny, int size);
+int *init_game(SDL_Renderer *renderer);
