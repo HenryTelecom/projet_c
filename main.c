@@ -22,6 +22,8 @@ int main()
     damier(window, renderer, window_h/10 - 3);
 
 
+    create_damier(window, renderer);
+
     while( !quit ) {
     	/*Handle events on queue*/
         while( SDL_PollEvent( &e ) != 0 )
