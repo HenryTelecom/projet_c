@@ -19,7 +19,7 @@ SDL_Renderer *create_window(SDL_Window* window)
 
     
     /* Set render color to white ( background will be rendered in this color )*/
-    SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
+    SDL_SetRenderDrawColor(renderer, 255, 204, 153, 255);
     /* Clear window*/
     SDL_RenderClear( renderer );
 

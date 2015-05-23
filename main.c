@@ -4,7 +4,7 @@
 
 #include "window.h"
 #include "damier.h"
-
+#include "pion.h"
 
 int main()
 {
@@ -15,7 +15,15 @@ int main()
 
     SDL_Renderer *renderer = create_window(window);
 
+    pion p;
+
+    p.x = 1;
+    p.y = 0;
+    p.color = 1;
+
     damier(window, renderer);
+    Drawpion(window, renderer, &p);
+
 
     while( !quit ) {
     	/*Handle events on queue*/

@@ -18,7 +18,7 @@ int damier(SDL_Window *window, SDL_Renderer *renderer)
 			rectangles[ln].w = 100;
 			rectangles[ln].h = 100;
     		
-			SDL_SetRenderDrawColor( renderer, 0, 0, 0, 255 );
+			SDL_SetRenderDrawColor( renderer, 102, 51, 0, 255 );
 			/* Render rectangle*/
 			SDL_RenderFillRect(renderer, &rectangles[ln]);
 		}
