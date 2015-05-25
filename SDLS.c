@@ -65,7 +65,9 @@ void SDLS_affiche_image(char * fname,SDL_Renderer * ren, int x, int y, int w, in
   dst.x = x; 
   dst.y = y; 
   dst.w = w; 
-  dst.h = h; 
+  dst.h = h;
+
+  /*SDL_DestroyTexture(tex);*/
  
 
   SDL_RenderCopy(ren, tex, NULL, &dst);

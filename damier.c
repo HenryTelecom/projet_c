@@ -29,5 +29,6 @@ SDL_Rect *create_damier(SDL_Window *window, SDL_Renderer *renderer)
 	/* Render the rectangle to the screen*/
 	SDL_RenderPresent(renderer);
 
+	free(rectangles);
 	return rectangles;
 }
