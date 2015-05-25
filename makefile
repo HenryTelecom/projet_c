@@ -1,6 +1,6 @@
 CC=gcc
 FLAGS=-Wall -pedantic -pedantic-errors -ansi
-FRAMEWORKS=-L/Library/Frameworks -framework SDL2
+FRAMEWORKS=-F/Library/Frameworks -framework SDL2
 FRAMEWORKS_LINUX=-lSDL2 -lSDL2_ttf
 SOURCE=./main.c
 LIBS=window.c damier.c pion.c SDLS.c

@@ -3,4 +3,4 @@
 
 #include <SDL2/SDL.h>
 
-SDL_Rect *create_damier(SDL_Window *window, SDL_Renderer *renderer);
+SDL_Rect *draw_damier(SDL_Window *window, SDL_Renderer *renderer);

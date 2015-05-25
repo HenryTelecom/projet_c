@@ -17,6 +17,8 @@ struct pion {
 int get_pion_size();
 int draw_pion(SDL_Renderer *renderer, pion *p);
 pion *create_pion(int x, int y, int color);
-int *move_pion(SDL_Renderer *renderer, int num_pion, pion *boite_pions, int nx, int ny);
-pion *init_game(SDL_Renderer *renderer);
-int *deplace_p(pion *boite_pions);
+pion *init_game();
+pion *pion_at_coord(pion *boite_pions, int x, int y);
+int pions_are_same(pion *p1, pion *p2);
+void draw_pions(SDL_Renderer *renderer, pion *boite_pions);
+int pion_can_move_at(pion *p, int x, int y);

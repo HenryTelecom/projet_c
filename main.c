@@ -6,75 +6,84 @@
 #include "damier.h"
 #include "pion.h"
 
+int event_loop(SDL_Window *window, SDL_Renderer *renderer, pion *boite_pions);
+void draw_scene(SDL_Window *window, SDL_Renderer *renderer, pion *boite_pions);
+
 int main()
 {
-    /*int pi =0;*/
-    int nb_click = 0;
-	int quit = 0;
-    SDL_Event e;
-    /*pion *p;*/
-    pion *boite_pions;
     SDL_Window *window = NULL;
-    SDL_Renderer *renderer;
-    int *resultat_click;
-    renderer = create_window(window);
+
+    SDL_Renderer *renderer = create_window(window);
+
+    pion *boite_pions = init_game();
+
+    draw_scene(window, renderer, boite_pions);
 
 
+    return event_loop(window, renderer, boite_pions);
+}
 
-    create_damier(window, renderer);
-    boite_pions = init_game(renderer);
+void draw_scene(SDL_Window *window, SDL_Renderer *renderer, pion *boite_pions)
+{
+    SDL_SetRenderDrawColor(renderer, 255, 204, 153, 255);
+
+    SDL_RenderClear(renderer);
+
+    draw_damier(window, renderer);
+    draw_pions(renderer, boite_pions);
+
+    SDL_RenderPresent(renderer);
+
+}
+
+int event_loop(SDL_Window *window, SDL_Renderer *renderer, pion *boite_pions)
+{
+    SDL_Event e;
+
+    int quit = 0,
+        x, y;
+
+    pion *selected_pion = NULL,
+         *tmp_pion = NULL;
 
 
-
-    /*p = create_pion(1,0,0);
-    draw_pion(renderer, &p[0]);*/
-
-    /*for(pi = 0; pi < 100; pi++){
-        printf("pion %d coord : x = %d y = %d, color = %d, dame = %d\n", pi, boite_pions[pi].x, boite_pions[pi].y, boite_pions[pi].color, boite_pions[pi].dame);
-    }*/
-    while(nb_click <= 100){
-        resultat_click = deplace_p(boite_pions);
-        move_pion(renderer,resultat_click[2],&boite_pions[0],resultat_click[0],resultat_click[1]);
-        nb_click ++;
-    }
-
-    /*move_pion(renderer,7,&boite_pions[0],4,5);
-    move_pion(renderer,3,&boite_pions[0],1,4);
-    move_pion(renderer,3,&boite_pions[0],2,5);
-    move_pion(renderer,2,&boite_pions[0],2,3);
-    move_pion(renderer,2,&boite_pions[0],3,4);
-    move_pion(renderer,11,&boite_pions[0],5,4);
-    move_pion(renderer,11,&boite_pions[0],6,5);
-    move_pion(renderer,6,&boite_pions[0],4,3);
-    move_pion(renderer,6,&boite_pions[0],5,4);
-    move_pion(renderer,5,&boite_pions[0],3,2);
-    move_pion(renderer,5,&boite_pions[0],4,3);
-    move_pion(renderer,0,&boite_pions[0],2,1);
-    move_pion(renderer,0,&boite_pions[0],3,2);
-    move_pion(renderer,20,&boite_pions[0],0,5);
-    move_pion(renderer,20,&boite_pions[0],1,4);
-    move_pion(renderer,20,&boite_pions[0],0,3);
-    move_pion(renderer,20,&boite_pions[0],1,2);
-    move_pion(renderer,20,&boite_pions[0],0,1);
-    move_pion(renderer,20,&boite_pions[0],1,0);*/
-
-    /*for(pi = 0; pi < 100; pi++){
-        printf("pion %d coord : x = %d y = %d, color = %d, dame = %d\n", pi, boite_pions[pi].x, boite_pions[pi].y, boite_pions[pi].color, boite_pions[pi].dame);
-    }*/
-    free(boite_pions);
-
-    while( !quit ) {
-    	/*Handle events on queue*/
-        while( SDL_PollEvent( &e ) != 0 )
+    while(!quit) {
+        while(SDL_PollEvent(&e) != 0)
         {
-            /*User requests quit*/
-            if( e.type == SDL_QUIT )
+            switch(e.type)
             {
-                quit = 1;
+                case SDL_MOUSEBUTTONDOWN :
+                    x = (int) (e.button.x / get_pion_size());
+                    y = (int) (e.button.y / get_pion_size());
+
+                    tmp_pion = pion_at_coord(boite_pions, x, y);
+
+                    if (selected_pion && !tmp_pion && pion_can_move_at(selected_pion, x, y)) {
+                        printf("MOVING PION : %d, %d TO : %d, %d\n", selected_pion->x, selected_pion->y, x, y);
+                        selected_pion->x = x;
+                        selected_pion->y = y;
+
+                        draw_scene(window, renderer, boite_pions);
+
+                        selected_pion = NULL;
+                    } else if (tmp_pion) {
+                        if (!selected_pion) {
+                            printf("SELECT PION : %d, %d\n", tmp_pion->x, tmp_pion->y);
+                            selected_pion = tmp_pion;
+                        } else if (tmp_pion->x == selected_pion->x && tmp_pion->y == selected_pion->y ){
+                            printf("UNSELECT PION : %d, %d\n", selected_pion->x, selected_pion->y);
+                            selected_pion = NULL;
+                        }
+                    }
+
+                    break;
+
+                case SDL_QUIT :
+                    quit = 1;
+                    break;
             }
         }
     }
 
     return 0;
 }
-
