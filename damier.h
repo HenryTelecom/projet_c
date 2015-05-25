@@ -3,4 +3,4 @@
 
 #include <SDL2/SDL.h>
 
-int damier(SDL_Window *window, SDL_Renderer *renderer, int size);
+SDL_Rect *create_damier(SDL_Window *window, SDL_Renderer *renderer);

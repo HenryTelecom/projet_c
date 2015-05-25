@@ -1,10 +1,12 @@
 #include "damier.h"
+#include "pion.h"
 
-int damier(SDL_Window *window, SDL_Renderer *renderer, int size)
+SDL_Rect *create_damier(SDL_Window *window, SDL_Renderer *renderer)
 {	
 	SDL_Rect *rectangles;
+	int ln, cn;
+	int gps = get_pion_size();
 
-    int ln, cn;
 
     /* Create a rectangle at pos ( (cn+(ln+1)%2) * 100, ln * 100 ) that's 100 pixels wide and 100 pixels high.*/
 	rectangles = malloc(sizeof(SDL_Rect)*10);
@@ -13,10 +15,10 @@ int damier(SDL_Window *window, SDL_Renderer *renderer, int size)
 	{
 		for (ln = 0; ln<=9 ; ln++)
 		{
-			rectangles[ln].x = (cn+(ln+1)%2) * size;
-			rectangles[ln].y = ln * size;
-			rectangles[ln].w = size;
-			rectangles[ln].h = size;
+			rectangles[ln].x = (cn+(ln+1)%2) *gps;
+			rectangles[ln].y = ln *gps;
+			rectangles[ln].w = gps;
+			rectangles[ln].h = gps;
     		
 			SDL_SetRenderDrawColor( renderer, 102, 51, 0, 255 );
 			/* Render rectangle*/
@@ -27,5 +29,5 @@ int damier(SDL_Window *window, SDL_Renderer *renderer, int size)
 	/* Render the rectangle to the screen*/
 	SDL_RenderPresent(renderer);
 
-	return 0;
+	return rectangles;
 }

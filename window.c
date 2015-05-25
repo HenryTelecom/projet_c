@@ -1,6 +1,31 @@
 #include "window.h"
 
-SDL_Renderer *create_window(SDL_Window* window, int height)
+
+int getscreenheight() {
+    int i;
+    int screen_height;
+
+
+    SDL_DisplayMode current;
+
+    SDL_Init(SDL_INIT_VIDEO);
+
+
+    for(i = 0; i < SDL_GetNumVideoDisplays(); ++i){
+
+        SDL_GetCurrentDisplayMode(i, &current);   /*current.h c'est la "hauteur" de l'écran !*/
+
+    }
+    screen_height = (current.h) - (((current.h)%100) + (current.h)/10);
+
+    return screen_height;
+}
+
+
+
+
+
+SDL_Renderer *create_window(SDL_Window* window)
 {
     SDL_Renderer* renderer = NULL;
 
@@ -9,8 +34,8 @@ SDL_Renderer *create_window(SDL_Window* window, int height)
     (
         "Jeu de dames", SDL_WINDOWPOS_UNDEFINED,
         SDL_WINDOWPOS_UNDEFINED,
-        height,
-        height,
+        getscreenheight(),
+        getscreenheight(),
         SDL_WINDOW_SHOWN
     );
 
