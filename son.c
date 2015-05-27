@@ -11,8 +11,7 @@ void deplace_pion()
 
    musique = Mix_LoadMUS("deplace_pion.mp3"); 
    Mix_PlayMusic(musique, 1); 
-   Mix_FreeMusic(musique); 
-   Mix_CloseAudio(); 
+   
 }
 
 void mange_pion()
@@ -26,8 +25,7 @@ void mange_pion()
 
    musique = Mix_LoadMUS("mange_pion.mp3"); 
    Mix_PlayMusic(musique, 1); 
-   Mix_FreeMusic(musique); 
-   Mix_CloseAudio(); 
+   
 }
 
 void dame()
@@ -38,11 +36,8 @@ void dame()
    {
       printf("%s", Mix_GetError());
    }
-
    musique = Mix_LoadMUS("dame.mp3"); 
    Mix_PlayMusic(musique, 1); 
-   Mix_FreeMusic(musique); 
-   Mix_CloseAudio(); 
 }
 void fin_de_partie()
 {
@@ -55,8 +50,6 @@ void fin_de_partie()
 
    musique = Mix_LoadMUS("fin_de_partie.mp3"); 
    Mix_PlayMusic(musique, -1); 
-   Mix_FreeMusic(musique); 
-   Mix_CloseAudio(); 
 }
 void initialisation()
 {
@@ -69,5 +62,6 @@ void initialisation()
 
    musique = Mix_LoadMUS("initialisation.mp3"); 
    Mix_PlayMusic(musique, 1); Mix_FreeMusic(musique); 
-   Mix_CloseAudio(); 
 }
+//	Mix_FreeMusic(musique); 
+// 	Mix_CloseAudio(); 
