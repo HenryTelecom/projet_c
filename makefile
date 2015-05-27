@@ -1,9 +1,9 @@
 CC=gcc
 FLAGS=-Wall -pedantic -pedantic-errors -ansi
-FRAMEWORKS=-L/Library/Frameworks -framework SDL2
+FRAMEWORKS=-framework SDL2 -framework SDL2_mixer
 FRAMEWORKS_LINUX=-lSDL2 -lSDL2_ttf -lSDL2_mixer
 SOURCE=./main.c
-LIBS=window.c damier.c pion.c SDLS.c
+LIBS=window.c damier.c pion.c SDLS.c son.c
 EXEC=./main.out
 
 all: compile launch clean
